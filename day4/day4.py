@@ -4,8 +4,12 @@ import sys
 from sets import Set
 from itertools import cycle
 
-count = 0
+passphrases = []
 for line in sys.stdin:
+    passphrases.append(line)
+
+count = 0
+for line in passphrases:
     passphrase = line.split()
     words = Set()
     valid = True
@@ -17,3 +21,19 @@ for line in sys.stdin:
     if valid:
         count += 1
 print(count)
+
+count = 0
+for line in passphrases:
+    passphrase = line.split()
+    words = Set()
+    valid = True
+    for word in passphrase:
+        sortedWord = ''.join(sorted(word))
+        if sortedWord in words:
+            valid = False
+            break
+        words.add(sortedWord)
+    if valid:
+        count += 1
+print(count)
+
