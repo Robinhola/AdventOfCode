@@ -13,39 +13,26 @@ for line in sys.stdin:
     program.append(res)
 
 def conditionTest(lval, op, rval):
-    if op == "==":
-        return lval == rval
-    if op == ">":
-        return lval > rval
-    if op == ">=":
-        return lval >= rval
-    if op == "<":
-        return lval < rval
-    if op == "<=":
-        return lval <= rval
-    if op == "!=":
-        return lval != rval
+    if op == "==": return lval == rval
+    if op == ">":  return lval >  rval
+    if op == ">=": return lval >= rval
+    if op == "<":  return lval <  rval
+    if op == "<=": return lval <= rval
+    if op == "!=": return lval != rval
 
 variables = {}
 maximum = 0
 
 def isTrue(condition):
     n, op, val = condition['name'], condition['op'], condition['val']
-    if n not in variables:
-        variables[n] = 0
+    if n not in variables: variables[n] = 0
     return conditionTest(variables[n], op, val)
 
 def executeOperation(operation):
     n, op, val = operation['name'], operation['op'], operation['val']
-    if n not in variables:
-        variables[n] = 0
-    if op == "inc":
-        variables[n] += val
-    elif op == "dec":
-        variables[n] -= val
-    else:
-        print ("Error:", op)
-        sys.exit()
+    if n not in variables: variables[n] = 0
+    if op == "inc": variables[n] += val
+    if op == "dec": variables[n] -= val
     return variables[n]
 
 for line in program:
