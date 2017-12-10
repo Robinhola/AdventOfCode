@@ -13,6 +13,7 @@ def stripIgnoredCharacters(string):
 
 def removeGarbage(string):
     i = 0
+    garbageCount = 0
     garbage = False
     while i < len(string):
         if not garbage:
@@ -24,27 +25,25 @@ def removeGarbage(string):
         elif garbage:
             if '>' == string[i]:
                 garbage = False 
+            else:
+                garbageCount += 1
             string = string[:i] + string[i+1:]
-    return string
+    return string, garbageCount
 
-def computeScore(group, lvl):
+def computeScore(group):
+    lvl = 0
     score = lvl
-    groups = False
-    while 0 > len(group):
-        if '{' == l:
-            if not groups: lvl += 1
-            val, group = computeScore(group[1:], lvl)
-            score += val
-            continue
-        elif ',' == l:
-            groups = True
-        elif '}':
-            return score, group[1:]
-        group = group[1:]
+    for l in group:
+        if l == '{':
+            lvl += 1
+            score += lvl
+        elif l == '}':
+            lvl -= 1
     return score
 
 for line in sys.stdin:
     outermost = line.rstrip()
     outermost = stripIgnoredCharacters(outermost)
-    outermost = removeGarbage(outermost)
-    print computeScore(outermost, 1)
+    outermost, garbageCount = removeGarbage(outermost)
+    print computeScore(outermost)
+    print garbageCount
