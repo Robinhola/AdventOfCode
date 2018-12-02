@@ -1,0 +1,6 @@
+cat 2018_day02.in.txt | node ./2018_day02.js
+Day 2, Dec 2018
+Line: 250
+243 (two) x 31 (three) = 7533
+mphcuasvrnjzzakbgdtqeoylva (left) and mphcuasvrnjzzwkbgdtqeoylva (right)
+mphcuasvrnjzzkbgdtqeoylva
