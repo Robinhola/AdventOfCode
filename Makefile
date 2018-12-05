@@ -6,3 +6,6 @@ day02:
 
 day03:
 	cat 2018_day03.in.txt | node ./2018_day03.js
+
+day04:
+	cat 2018_day04.in.txt | node ./2018_day04.js
